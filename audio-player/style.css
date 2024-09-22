@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+
+  border: 2px solid red;
+}
+
+body {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  height: 100vh;
+
+  border: 2px solid blue;
+}
+
+.player {
+  width: 25vw;
+  height: 30vw;
+  margin: 0 auto;
+
+  border: 2px solid red;
+}
+
+.cover {
+  height: 65%;
+}
+
+.controls,
+.forward-backward {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-controls {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#play-pause,
+#next,
+#previous {
+  cursor: pointer;
+
+  background-color: aqua;
+}
+
+#play-pause {
+  width: 50px;
+  height: 50px;
+}
+
+#next,
+#previous {
+  width: 30px;
+  height: 30px;
+}
+
+.forward-backward img {
+  width: 100%;
+}
+
+.play-btn {
+  background-image: url(./assets/icons/play.png);
+  background-size: contain;
+}
+
+.pause-btn {
+  background-image: url(./assets/icons/pause.png);
+  background-size: contain;
+}

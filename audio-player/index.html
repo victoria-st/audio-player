@@ -8,10 +8,29 @@
     <title>Document</title>
   </head>
   <body>
-    <button id="play-pause">Play</button>
-    <button id="next">Next</button>
-    <button id="previous">Previous</button>
-    <audio id="music"></audio>
+    <div class="player">
+      <div class="cover"></div>
+      <div class="controls">
+        <div class="top-controls">
+          <div class="play-pause">
+            <div id="play-pause" class="play-btn"></div>
+          </div>
+          <div class="description">
+            <audio id="music"></audio>
+          </div>
+          <div class="forward-backward">
+            <div id="next">
+              <img src="./assets/icons/backward.png" alt="Backward" />
+            </div>
+            <div id="previous">
+              <img src="./assets/icons/forward.png" alt="Forward" />
+            </div>
+          </div>
+        </div>
+        <div class="bottom-controls"></div>
+      </div>
+    </div>
+
     <script src="./index.js"></script>
   </body>
 </html>

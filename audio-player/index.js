@@ -10,23 +10,19 @@ let i = 0;
 playAudio = () => {
   AUDIO.src = SONGS[i];
   if (!isPlay) {
+    PLAY.classList.toggle("play-btn");
+    PLAY.classList.toggle("pause-btn");
     AUDIO.play();
     isPlay = true;
   } else {
+    PLAY.classList.toggle("pause-btn");
+    PLAY.classList.toggle("play-btn");
     AUDIO.pause();
     isPlay = false;
   }
 };
 
-PLAY.addEventListener("click", () => {
-  console.log("clicked");
-  if (PLAY.innerText == "Play") {
-    PLAY.innerText = "Pause";
-  } else {
-    PLAY.innerText = "Play";
-  }
-  playAudio();
-});
+PLAY.addEventListener("click", playAudio());
 
 NEXT.addEventListener("click", () => {
   AUDIO.pause();
