@@ -7,7 +7,8 @@
 
 body {
   display: flex;
-  justify-items: center;
+  flex-direction: column;
+  justify-items: end;
   align-items: center;
   height: 100vh;
 
@@ -17,13 +18,21 @@ body {
 .player {
   width: 25vw;
   height: 30vw;
-  margin: 0 auto;
+  margin: 10% auto 1%;
 
   border: 2px solid red;
 }
 
 .cover {
   height: 65%;
+}
+
+.img-beyonce {
+  background-image: url(./assets/images/lemonade.png);
+}
+
+.img-duaLipa {
+  background-image: url(./assets/images/dontstartnow.png);
 }
 
 .controls,
@@ -35,6 +44,10 @@ body {
 .top-controls {
   display: flex;
   justify-content: space-evenly;
+}
+
+.description {
+  width: 50%;
 }
 
 #play-pause,
@@ -68,4 +81,34 @@ body {
 .pause-btn {
   background-image: url(./assets/icons/pause.png);
   background-size: contain;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 25vw;
+  margin: 0 auto;
+  padding: 20px 0 0;
+  background-color: #2e7cdf;
+}
+
+.footer-text {
+  padding-bottom: 15px;
+  color: #fff;
+  font-family: Poppins, sans-serif;
+  font-size: clamp(16px, 1.31vw, 24px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+}
+
+.footer-rs-logo {
+  width: 134px;
+  height: 50px;
+  margin: 0 0 20px 0;
+  background-image: url("./assets/icons/rs-school-logo.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
 }

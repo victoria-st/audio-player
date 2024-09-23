@@ -3,6 +3,23 @@ const AUDIO = document.getElementById("music");
 const NEXT = document.getElementById("next");
 const PREVIOUS = document.getElementById("previous");
 const SONGS = ["./assets/audio/beyonce.mp3", "./assets/audio/dontstartnow.mp3"];
+const SINGER = document.querySelector(".singer");
+const TITLE = document.querySelector(".title");
+const COVER = document.querySelector(".cover");
+
+// Existing code unchanged.
+// window.onload = function () {
+//   var context = new AudioContext();
+//   // Setup all nodes
+//   // ...
+// };
+
+// // One-liner to resume playback when user interacted with the page.
+// PLAY.addEventListener("click", function () {
+//   context.resume().then(() => {
+//     console.log("Playback resumed successfully");
+//   });
+// });
 
 let isPlay = false;
 let i = 0;
@@ -22,6 +39,21 @@ playAudio = () => {
   }
 };
 
+changeDescription = (x) => {
+  if (x == 1) {
+    SINGER.innerHTML = "Dua Lipa";
+    TITLE.innerHTML = "Don't Start Now";
+  } else {
+    SINGER.innerHTML = "Beyonce";
+    TITLE.innerHTML = "Don't Hurt Yourself";
+  }
+};
+
+changeCover = () => {
+  COVER.classList.toggle("img-beyonce");
+  COVER.classList.toggle("img-duaLipa");
+};
+
 PLAY.addEventListener("click", playAudio());
 
 NEXT.addEventListener("click", () => {
@@ -32,6 +64,8 @@ NEXT.addEventListener("click", () => {
     i = 0;
   }
   AUDIO.src = SONGS[i];
+  changeDescription(i);
+  changeCover();
   console.log("i = ", i);
   AUDIO.play();
   isPlay = true;
@@ -45,6 +79,8 @@ PREVIOUS.addEventListener("click", () => {
     i = SONGS.length - 1;
   }
   AUDIO.src = SONGS[i];
+  changeDescription(i);
+  changeCover();
   console.log("i = ", i);
   AUDIO.play();
   isPlay = true;
