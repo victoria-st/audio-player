@@ -2,7 +2,7 @@
   margin: 0;
   box-sizing: border-box;
 
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 
 body {
@@ -11,8 +11,18 @@ body {
   justify-items: end;
   align-items: center;
   height: 100vh;
+}
 
-  border: 2px solid blue;
+.blur-beyonce {
+  background-image: url(./assets/images/blurred_beyonce.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+.blur-duaLipa {
+  background-image: url(./assets/images/blurred_dualipa.jpg);
+  background-position: center;
+  background-size: cover;
 }
 
 .player {
@@ -20,7 +30,7 @@ body {
   height: 30vw;
   margin: 10% auto 1%;
 
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 
 .cover {
@@ -29,10 +39,14 @@ body {
 
 .img-beyonce {
   background-image: url(./assets/images/lemonade.png);
+  background-position: center;
+  background-size: cover;
 }
 
 .img-duaLipa {
   background-image: url(./assets/images/dontstartnow.png);
+  background-position: center;
+  background-size: cover;
 }
 
 .controls,

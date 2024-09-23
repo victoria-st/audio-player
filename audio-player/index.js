@@ -6,6 +6,7 @@ const SONGS = ["./assets/audio/beyonce.mp3", "./assets/audio/dontstartnow.mp3"];
 const SINGER = document.querySelector(".singer");
 const TITLE = document.querySelector(".title");
 const COVER = document.querySelector(".cover");
+const BACK = document.querySelector("body");
 
 // Existing code unchanged.
 // window.onload = function () {
@@ -51,7 +52,9 @@ changeDescription = (x) => {
 
 changeCover = () => {
   COVER.classList.toggle("img-beyonce");
+  BACK.classList.toggle("blur-beyonce");
   COVER.classList.toggle("img-duaLipa");
+  BACK.classList.toggle("blur-duaLipa");
 };
 
 PLAY.addEventListener("click", playAudio());
