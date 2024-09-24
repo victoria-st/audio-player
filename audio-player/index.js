@@ -8,38 +8,21 @@ const TITLE = document.querySelector(".title");
 const COVER = document.querySelector(".cover");
 const BACK = document.querySelector("body");
 
-// Existing code unchanged.
-// window.onload = function () {
-//   var context = new AudioContext();
-//   // Setup all nodes
-//   // ...
-// };
-
-// // One-liner to resume playback when user interacted with the page.
-// PLAY.addEventListener("click", function () {
-//   context.resume().then(() => {
-//     console.log("Playback resumed successfully");
-//   });
-// });
-
 let isPlay = false;
 let i = 0;
 
-playAudio = () => {
-  AUDIO.src = SONGS[i];
+// Change the button Play -> Pause -> Play
+changeButton = () => {
   if (!isPlay) {
-    PLAY.classList.toggle("play-btn");
-    PLAY.classList.toggle("pause-btn");
-    AUDIO.play();
-    isPlay = true;
+    PLAY.classList.remove("play-btn");
+    PLAY.classList.add("pause-btn");
   } else {
-    PLAY.classList.toggle("pause-btn");
-    PLAY.classList.toggle("play-btn");
-    AUDIO.pause();
-    isPlay = false;
+    PLAY.classList.remove("pause-btn");
+    PLAY.classList.add("play-btn");
   }
 };
 
+// Change the singer name and song title
 changeDescription = (x) => {
   if (x == 1) {
     SINGER.innerHTML = "Dua Lipa";
@@ -50,6 +33,7 @@ changeDescription = (x) => {
   }
 };
 
+// Change images that correspond to the song
 changeCover = () => {
   COVER.classList.toggle("img-beyonce");
   BACK.classList.toggle("blur-beyonce");
@@ -57,10 +41,26 @@ changeCover = () => {
   BACK.classList.toggle("blur-duaLipa");
 };
 
-PLAY.addEventListener("click", playAudio());
+// Start and pause the song
+PLAY.addEventListener("click", () => {
+  console.log("clicked");
+  if (!isPlay) {
+    changeButton();
+    AUDIO.src = SONGS[i];
+    AUDIO.play();
+    isPlay = true;
+    console.log(isPlay);
+  } else {
+    changeButton();
+    AUDIO.pause();
+    isPlay = false;
+  }
+});
 
+// Play the next song
 NEXT.addEventListener("click", () => {
   AUDIO.pause();
+  isPlay = false;
   if (i < SONGS.length - 1) {
     i++;
   } else {
@@ -70,12 +70,15 @@ NEXT.addEventListener("click", () => {
   changeDescription(i);
   changeCover();
   console.log("i = ", i);
+  changeButton();
   AUDIO.play();
   isPlay = true;
 });
 
+// Play the previous song
 PREVIOUS.addEventListener("click", () => {
   AUDIO.pause();
+  isPlay = false;
   if (i - 1 >= 0) {
     --i;
   } else {
@@ -84,6 +87,7 @@ PREVIOUS.addEventListener("click", () => {
   AUDIO.src = SONGS[i];
   changeDescription(i);
   changeCover();
+  changeButton();
   console.log("i = ", i);
   AUDIO.play();
   isPlay = true;
