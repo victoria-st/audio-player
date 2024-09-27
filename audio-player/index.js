@@ -1,5 +1,4 @@
 const PLAY = document.getElementById("play-pause");
-// const AUDIO = document.getElementById("music");
 const NEXT = document.getElementById("next");
 const PREVIOUS = document.getElementById("previous");
 const SONGS = ["./assets/audio/beyonce.mp3", "./assets/audio/dontstartnow.mp3"];
@@ -8,33 +7,29 @@ const TITLE = document.querySelector(".title");
 const COVER = document.querySelector(".cover");
 const BACK = document.querySelector("body");
 const LENGTH = document.querySelector('.length');
+const TIME = document.querySelector('.current-time');
+const SLIDER = document.querySelector('.slider');
+const PROGRESS = document.querySelector('.progress');
 
-// const audioPlayer = document.querySelector(".audio-player");
-const AUDIO = new Audio("./assets/audio/beyonce.mp3");
 
 let isPlay = false;
 let i = 0;
 
-// const audioElement = new Audio('./assets/audio/beyonce.mp3');
-AUDIO.addEventListener("loadeddata", () => {
+const AUDIO = new Audio("./assets/audio/beyonce.mp3");
+
+AUDIO.addEventListener("durationchange", () => {
   let duration = AUDIO.duration;
-  LENGTH.textContent = getSongLength(AUDIO.duration);
-  console.log(duration, "duration", typeof(duration), parseInt(duration));
-  // The duration variable now holds the duration (in seconds) of the audio clip
-  
+  LENGTH.textContent = getTimeFromSecondsNumber(AUDIO.duration); 
 });
 
 
-//turn 128 seconds into 2:08
-function getSongLength(numberSeconds) {
-  let seconds = parseInt(numberSeconds);
+// Determine time from the number of seconds
+function getTimeFromSecondsNumber(secondsNumber) {
+  let seconds = parseInt(secondsNumber);
   let minutes = parseInt(seconds / 60);
   seconds -= minutes * 60;
-  console.log(`${minutes}:${String(seconds).padStart(2, 0)}`);
   return `${minutes}:${String(seconds).padStart(2, 0)}`;
 }
-
-
 
 
 // Change the button Play -> Pause -> Play
@@ -69,19 +64,21 @@ changeCover = () => {
 
 // Start and pause the song
 PLAY.addEventListener("click", () => {
-  console.log("clicked");
   if (!isPlay) {
     changeButton();
-    // AUDIO.src = SONGS[i];
     AUDIO.play();
     isPlay = true;
-
-    console.log(AUDIO.duration, "initial duration");
   } else {
     changeButton();
     AUDIO.pause();
     isPlay = false;
   }
+});
+
+// Update current time
+AUDIO.addEventListener("timeupdate", () => {
+  TIME.textContent = getTimeFromSecondsNumber(AUDIO.currentTime);
+  SLIDER.style.left = parseInt(AUDIO.currentTime / AUDIO.duration * 100) + '%';
 });
 
 // Play the next song
@@ -96,7 +93,6 @@ NEXT.addEventListener("click", () => {
   AUDIO.src = SONGS[i];
   changeDescription(i);
   changeCover();
-  console.log("i = ", i);
   changeButton();
   AUDIO.play();
   isPlay = true;
@@ -115,21 +111,16 @@ PREVIOUS.addEventListener("click", () => {
   changeDescription(i);
   changeCover();
   changeButton();
-  console.log("i = ", i);
   AUDIO.play();
   isPlay = true;
 });
 
-// TEST CODE
-// AUDIO.addEventListener("durationchange", () => {
-//   var x = AUDIO.duration;
-//   console.log(x, "after update duration");
-// });
+// Switch to a certain moment of the audio
+PROGRESS.addEventListener('click', (event) => {
+  let selectedTime = parseInt(event.offsetX / PROGRESS.offsetWidth * AUDIO.duration);
+  AUDIO.currentTime = selectedTime
+})
 
 
 
-// AUDIO.addEventListener("timeupdate", () => {
-//   // Sets the percentage
-//   timePlayed = `${Math.floor((AUDIO.currentTime / AUDIO.duration) * 100)}%`;
-//   console.log(timePlayed, "9");
-// });
+
